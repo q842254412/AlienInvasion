@@ -20,16 +20,22 @@ class AlienInvasion:
         pygame.display.set_caption("Alien Invasion")
         self.ship = Ship(self)
         
-    def run_game(self):
-        while True:
-            for event in pygame.event.get():
+    def _check_events(self):
+        for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
                     
-            self.screen.fill(self.settings.bg_color)
-            self.ship.blitme()
-            pygame.display.flip()
+    def _update_screen(self):
+        self.screen.fill(self.settings.bg_color)
+        self.ship.blitme()
+        
+        pygame.display.flip()
+        
+    def run_game(self):
+        while True:
+            self._check_events()
+            self._update_screen()
             
 if __name__ == '__main__':
     ai = AlienInvasion()
