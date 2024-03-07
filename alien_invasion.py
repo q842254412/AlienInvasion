@@ -8,6 +8,7 @@ Created on Wed Mar  6 22:41:52 2024
 import sys
 import pygame
 from settings import Settings
+from ship import Ship
 
 class AlienInvasion:
     def __init__(self):
@@ -17,7 +18,7 @@ class AlienInvasion:
                                                self.settings.screen_height))
         #creat a display window
         pygame.display.set_caption("Alien Invasion")
-        self.bg_color = (self.settings.bg_color)
+        self.ship = Ship(self)
         
     def run_game(self):
         while True:
@@ -26,7 +27,8 @@ class AlienInvasion:
                     pygame.quit()
                     sys.exit()
                     
-            self.screen.fill(self.bg_color)
+            self.screen.fill(self.settings.bg_color)
+            self.ship.blitme()
             pygame.display.flip()
             
 if __name__ == '__main__':
